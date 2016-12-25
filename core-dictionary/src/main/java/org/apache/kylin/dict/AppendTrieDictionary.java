@@ -141,7 +141,7 @@ public class AppendTrieDictionary<T> extends Dictionary<T> {
         }
     }
 
-    public static class DictSliceKey implements WritableComparable {
+    public static class DictSliceKey implements WritableComparable, java.io.Serializable {
         byte[] key;
 
         public static DictSliceKey wrap(byte[] key) {
@@ -182,7 +182,7 @@ public class AppendTrieDictionary<T> extends Dictionary<T> {
         }
     }
 
-    public static class DictSlice<T> implements Writable {
+    public static class DictSlice<T> implements Writable, java.io.Serializable {
         public DictSlice() {
         }
 
@@ -446,7 +446,7 @@ public class AppendTrieDictionary<T> extends Dictionary<T> {
         }
     }
 
-    public static class DictNode implements Writable {
+    public static class DictNode implements Writable, java.io.Serializable {
         public byte[] part;
         public int id = -1;
         public boolean isEndOfValue;
