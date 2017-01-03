@@ -155,6 +155,7 @@ public class HiveColumnCardinalityUpdateJob extends AbstractHadoopJob {
                 results.add(str);
             }
         }
+        fileSystem.close();
         return results;
     }
 

@@ -106,6 +106,7 @@ public class HadoopUtil {
         if (fs.exists(path)) {
             fs.delete(path, true);
         }
+        fs.close();
     }
 
     public static byte[] toBytes(Writable writable) {

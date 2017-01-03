@@ -91,6 +91,7 @@ public class UpdateCubeInfoAfterBuildStep extends AbstractExecutable {
             minValue = Math.min(min, minValue);
             maxValue = Math.max(max, maxValue);
         } finally {
+            fs.close();
             IOUtils.closeQuietly(is);
         }
         logger.info("updateTimeRange step. minValue:" + minValue + " maxValue:" + maxValue);

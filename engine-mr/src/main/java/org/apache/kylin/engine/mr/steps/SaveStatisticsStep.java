@@ -70,6 +70,7 @@ public class SaveStatisticsStep extends AbstractExecutable {
                 String statisticsFileName = newSegment.getStatisticsResourcePath();
                 rs.putResource(statisticsFileName, is, System.currentTimeMillis());
             } finally {
+                fs.close();
                 IOUtils.closeStream(is);
             }
 

@@ -115,6 +115,7 @@ public class MergeStatisticsStep extends AbstractExecutable {
                     e.printStackTrace();
                     throw e;
                 } finally {
+                    fs.close();
                     IOUtils.closeStream(reader);
                     if (tempFile != null)
                         tempFile.delete();

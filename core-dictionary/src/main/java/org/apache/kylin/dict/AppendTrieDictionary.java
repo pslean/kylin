@@ -161,6 +161,15 @@ public class AppendTrieDictionary<T> extends Dictionary<T> {
         }
 
         @Override
+        public boolean equals(Object obj) {
+            if (!(obj instanceof DictSliceKey)){
+                return false;
+            }
+            DictSliceKey other = (DictSliceKey)obj;
+            return Bytes.equals(key, other.key);
+        }
+
+        @Override
         public int compareTo(Object o) {
             if (!(o instanceof DictSliceKey)) {
                 return -1;
@@ -1219,7 +1228,7 @@ public class AppendTrieDictionary<T> extends Dictionary<T> {
             dstFs.delete(dstPath, true);
         }
         FileUtil.copy(FileSystem.get(srcPath.toUri(), conf), srcPath, FileSystem.get(dstPath.toUri(), conf), dstPath, false, true, conf);
-
+        dstFs.close();
         return newDict;
     }
 

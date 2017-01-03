@@ -124,6 +124,7 @@ public class HBaseConnection {
                 coprocessorPool.shutdownNow();
             }
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             coprocessorPool.shutdownNow();
         }
     }
@@ -205,7 +206,9 @@ public class HBaseConnection {
     public static String makeQualifiedPathInHBaseCluster(String path) {
         try {
             FileSystem fs = FileSystem.get(getCurrentHBaseConfiguration());
-            return fs.makeQualified(new Path(path)).toString();
+            String result =  fs.makeQualified(new Path(path)).toString();
+            fs.close();
+            return result;
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot create FileSystem from current hbase cluster conf", e);
         }

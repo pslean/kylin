@@ -383,6 +383,7 @@ public class HiveMRInput implements IMRInput {
             if (fs.exists(externalDataPath)) {
                 fs.delete(externalDataPath, true);
             }
+            fs.close();
         }
 
         public void setIntermediateTableIdentity(String tableIdentity) {

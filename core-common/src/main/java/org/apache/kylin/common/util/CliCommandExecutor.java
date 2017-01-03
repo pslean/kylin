@@ -131,18 +131,21 @@ public class CliCommandExecutor {
         BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         String line;
         StringBuilder result = new StringBuilder();
-        while ((line = reader.readLine()) != null) {
-            result.append(line).append('\n');
-            if (logAppender != null) {
-                logAppender.log(line);
-            }
-        }
-
         try {
+            while ((line = reader.readLine()) != null) {
+                result.append(line).append('\n');
+                if (logAppender != null) {
+                    logAppender.log(line);
+                }
+            }
+
             int exitCode = proc.waitFor();
             return Pair.newPair(exitCode, result.toString());
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             throw new IOException(e);
+        } finally {
+            reader.close();
         }
     }
 

@@ -243,6 +243,7 @@ public class StorageCleanupJob extends AbstractApplication {
             }
             System.out.println("-------------------------------------------------------");
         }
+        fs.close();
     }
 
     private void cleanUnusedIntermediateHiveTable(Configuration conf) throws Exception {
@@ -349,6 +350,7 @@ public class StorageCleanupJob extends AbstractApplication {
                         } else {
                             logger.info("Hive table {}'s external path {} not exist. It's normal if kylin.source.hive.keep-flat-table set false (By default)", tableToDelete, path);
                         }
+                        fs.close();
                     } else {
                         logger.warn("Hive table {}'s job ID not found, segmentId2JobId: {}", tableToDelete, segmentId2JobId.toString());
                     }

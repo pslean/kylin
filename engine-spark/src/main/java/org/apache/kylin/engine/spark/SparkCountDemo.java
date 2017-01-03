@@ -75,6 +75,6 @@ public class SparkCountDemo extends AbstractApplication {
                 return new Tuple2(key, value);
             }
         }).saveAsNewAPIHadoopFile("hdfs://10.249.65.231:8020/tmp/hfile", ImmutableBytesWritable.class, KeyValue.class, HFileOutputFormat.class);
-
+        sc.close();
     }
 }

@@ -227,6 +227,7 @@ public class KafkaMRInput implements IMRInput {
             if (fs.exists(externalDataPath)) {
                 fs.delete(externalDataPath, true);
             }
+            fs.close();
         }
 
         public void setDataPath(String externalDataPath) {
